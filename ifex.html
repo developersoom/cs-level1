@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>if exercises</title>
+</head>
+<script>
+//1. 사용자에게 숫자를 입력받아 양수, 0, 음수 구분
+    var number = Number(prompt('아무 숫자나 입력하세요'))
+    if (number > 0){
+        alert('양수입니다')
+    }
+    else if (number === 0){
+        alert('0입니다')
+    }
+    else {
+        alert('음수입니다.')
+    }
+
+//2. 홀짝 구분
+    var number = Number(prompt('아무 숫자나 입력하세요'))
+    if (number >= 0 && number % 2 === 0)
+        {   alert('짝수입니다')
+        } 
+    else if (number >= 0 && number % 2 === 1)
+            {alert('홀수입니다')
+        }
+    else 
+    {
+        alert('0이상의 정수를 입력하세요.')
+    }
+
+//3. 사용자에게 국어, 영어, 수학 점수를 입력받아 평균을 구한 뒤 '수우미양가' 구분 (완전 옛날st..)
+    var Kor = Number(prompt('당신의 국어 점수는?'))
+    var Eng = Number(prompt('당신의 영어 점수는?'))
+    var Math = Number(prompt('당신의 수학 점수는?'))
+    var score = (Kor + Eng + Math)/3
+    if (score >= 90){
+        alert("수~~~~~~~~~~~~")
+    }
+    else if (score >= 80){
+        alert("우~~~~~~~~~~~")
+    }
+    else if (score >= 70){
+        alert("미...")
+    }
+    else if (score >= 60){
+        alert('양....')
+    }
+    else {
+        alert('가...'
+        )}
+    document.write('당신의 평균 점수는 '+score+'입니다.')
+</script>
+<body>
+    
+</body>
+</html>
