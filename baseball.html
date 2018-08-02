@@ -37,8 +37,6 @@
     //숫자입력받기
 
     while (strike != 3) {
-        var strike = 0;
-        var ball = 0;
         // var input = [];
 
         // for (var i = 0; i < 3; i++) {
@@ -46,25 +44,25 @@
         // }
         // console.log('입력한 수는 ' + input[0] + ',' + input[1] + ',' + input[2] + '입니다.' + '<br>');
 
-        var input = Number(prompt('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)'));
-        var value = (input.split('');
+        var input = prompt('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)');
+        var value = input.split('').map(Number);
+
         console.log(value);
 
         ///스트라이크&볼 찾기
+        var strike = 0;
+        var ball = 0;
         for (var i = 0; i < 3; i++) {
             if (value[i] === extract[i]) {
                 strike++;
             } else {
-                if (value.includes(extract)) {
+                if (value.includes(extract[i])) {
                     ball++;
                 }
             }
         }
-        alert(strike + '스트라이크  ' + ball + '볼');
         console.log(strike + '스트라이크  ' + ball + '볼');
-        break;
     }
-
     document.write('끝')
 
 </script>
