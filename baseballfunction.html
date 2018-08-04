@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>baseball</title>
+</head>
+<script>
+    function shuffle(arr) {
+        var j, x, i;
+        for (var i = arr.length; i; i -= 1) {  //나중엔 어차피 0으로 수렴하니까 
+            var j = Math.floor(Math.random() * i);
+            var x = arr[i - 1]; //배열에서 맨 마지막 값
+            arr[i - 1] = arr[j];
+            arr[j] = x;
+        }
+    };
+
+    function split() {
+        var input = prompt('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)');
+        var split = input.split('').map(Number);
+        return split;
+    }
+
+    function number() {
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        shuffle(arr);
+        var arr = [arr[0], arr[1], arr[2]]
+        console.log('컴퓨터 수는 ' + arr[0] + ',' + arr[1] + ',' + arr[2] + '입니다.');
+        return arr;
+    }
+
+    function check(arr1, arr2) {
+        var strike = 0;
+        var ball = 0;
+        for (var i = 0; i < 3; i++) {
+            if (arr1[i] === arr2[i]) {
+                strike++;
+            } else {
+                if (arr1.includes(arr2[i])) {
+                    ball++;
+                }
+            }
+        }
+        console.log(strike + '스트라이크  ' + ball + '볼');
+
+        if (strike === 3) {
+            document.write('정답!');
+        } else {
+            game();
+        }
+    }
+
+    // 도대체 고정되어야하는 컴퓨터 숫자를 전역변수를 안쓰고 어떻게 해야할지 1도 모르겠다!!!
+    var num = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    shuffle(num);
+    var comNum = [num[0], num[1], num[2]];
+    console.log(comNum);
+
+
+    function game() {
+        var input = prompt('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)');
+        var userNum = input.split('').map(Number);
+        console.log(userNum);
+        check(comNum, userNum);
+    }
+
+
+    game();
+
+
+
+</script>
+
+<body>
+</body>
+
+</html>
