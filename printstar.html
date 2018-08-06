@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script>
+    //  nxn 출력
+    var input = Number(prompt('한자리 숫자 입력'));
+    for (i = 0; i < input; i++) {
+        for (j = 0; j < input; j++) {
+            document.write('*');
+        }
+        document.write('<br>');
+    }
+
+    // 왼쪽 정렬 삼각형 출력
+    var input = Number(prompt('한자리 숫자 입력'));
+    for (i = 0; i < input; i++) {
+        for (j = 0; j <= i; j++) {
+            document.write('*');
+        }
+        document.write('<br>');
+    }
+
+    // 오른쪽 정렬 삼각형 출력하려고 했는데 역삼각형 출력
+    var input = Number(prompt('한자리 숫자 입력'));
+
+    for (var i = input; i > 0; i--) {
+        for (var j = 0; j < i; j++) {
+            document.write('*');
+        }
+        document.write('<br>');
+    }
+
+
+    // 오른쪽 정렬 삼각형 출력
+
+    var input = Number(prompt('한자리 숫자 입력'));
+    for (i = 1; i <= input; i++) {
+        for (j = 1; j <= input; j++) {
+            if (i + j >= input + 1) {
+                document.write("*");
+            } else {
+                document.write("&nbsp;");
+            }
+        }
+        document.write("<br>");
+    }
+
+
+</script>
+
+<body>
+</body>
+
+</html>
