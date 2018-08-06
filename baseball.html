@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Baseball game</title>
+</head>
+<script>
+
+    function shuffle(arr) {
+        var j, x, i;
+        for (var i = arr.length; i; i -= 1) {
+            var j = Math.floor(Math.random() * i);
+            var x = arr[i - 1];
+            arr[i - 1] = arr[j];
+            arr[j] = x;
+        }
+        return arr;
+    };
+
+    function input() {
+        var number1 = prompt('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)');
+        var split = number1.split('').map(Number);
+        if (split.length != 3) {
+            alert('숫자 3개를 입력하세요');
+            input();
+        }
+        else {
+            console.log(split);
+        }
+        return split;
+    }
+
+    function strikeCheck(arr1, arr2) {
+        var strike = 0
+        for (var i = 0; i < 3; i++) {
+            if (arr1[i] === arr2[i]) {
+                strike++; //*** 여기 indent 4회
+            }
+        }
+        console.log('스트라이크' + strike + '회');
+        return strike;
+    }
+
+
+
+    function ballCheck(arr1, arr2) {
+        var ball = 0
+        for (var i = 0; i < 3; i++) {
+            if (arr1[i] != arr2[i] && arr1.includes(arr2[i])) {
+                ball++; //*** 여기 indent 4회
+            }
+        }
+        console.log('볼' + ball + '회');
+        return ball;
+    }
+
+
+    function game() {
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var arrShuffle = shuffle(arr);
+        var ref = [arrShuffle[0], arrShuffle[1], arrShuffle[2]];
+        console.log('컴퓨터 숫자는 ' + ref);
+        var count = 0;
+
+        while (strike != 3) {
+            count++;
+            var userNum = input();
+            var strike = strikeCheck(userNum, ref);
+            var ball = ballCheck(userNum, ref);
+            alert(count+'회 : ' +strike +'스트라이크 '+ball+'볼');
+        }
+        document.write('축하합니다!');
+    }
+
+    game();
+
+</script>
+
+<body>
+</body>
+
+</html>
