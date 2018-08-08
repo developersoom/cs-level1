@@ -22,7 +22,7 @@
 
         function input() {
             var inputNum = Number(prompt(('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)'), '123'));
-            while (isNaN(inputNum) || typeof inputNum !== 'number' || inputNum > 1000 || inputNum < 100) {
+            while ((isNaN(inputNum) || typeof inputNum !== 'number' || inputNum > 1000 || inputNum < 100 || (inputNum + '').indexOf('0') > -1)) {
                 alert('1~9까지의 서로 다른 숫자 세 개를 입력하세요. (예: 123)');
                 var inputNum = Number(prompt(('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)'), '123'));
             };
