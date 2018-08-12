@@ -35,17 +35,39 @@
         }
 
         // 2. 유저 수 입력 받기
+
+        // function input() {
+        //     let inputNum = Number(prompt(('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)'), '123'));
+        //     while ((isNaN(inputNum) || typeof inputNum !== 'number' || inputNum > 1000 || inputNum < 100 || (inputNum + '').indexOf('0') > -1)) {
+        //         alert('1~9까지의 서로 다른 숫자 세 개를 입력하세요. (예: 123)');
+        //          inputNum = Number(prompt(('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)'), '123'));
+        //     }
+        //     let str = inputNum.toString();
+        //     // console.log(typeof str);
+        //     let userNum = str.split('').map(Number);
+        //     // console.log('split은' + userNum);
+        //     return userNum;
+        // }
+
         function input() {
-            let inputNum = Number(prompt(('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)'), '123'));
-            while ((isNaN(inputNum) || typeof inputNum !== 'number' || inputNum > 1000 || inputNum < 100 || (inputNum + '').indexOf('0') > -1)) {
-                alert('1~9까지의 서로 다른 숫자 세 개를 입력하세요. (예: 123)');
-                let inputNum = Number(prompt(('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)'), '123'));
-            };
-            let str = inputNum.toString();
-            // console.log(typeof str);
-            let userNum = str.split('').map(Number);
-            // console.log('split은' + userNum);
-            return userNum;
+            let inputNum = [];
+            while (inputNum.length != 3) {
+                let userNum = Number(prompt(('1부터 9까지 숫자 하나를 입력하세요.')));
+
+                if (inputNum.includes(userNum)) {
+                    userNum = Number(prompt(('*경고* 입력한 수와 겹치지 않는 수를 입력하세요.')));
+                } else if (isNaN(userNum)) {
+                    userNum = Number(prompt(('*경고* 0이 아닌 1부터 9까지 숫자 한 개만 입력하세요.')));
+                } else if (userNum > 9 || userNum < 0) {
+                    userNum = Number(prompt(('*경고* 1부터 9까지 한자리 숫자를 입력하세요.')));
+                } else if (userNum === 0) {
+                    return;
+                } else {
+                    inputNum.push(userNum);
+                    console.log('입력받은 수는 '+userNum);
+                }
+            }
+            return inputNum;
         }
 
         // 3. 스트라이크 체크
@@ -91,7 +113,7 @@
 
                 alert('입력한 수 = ' + userNum +
                     '\n' + count + '번째 도전 결과:  [' + strike + ' 스트라이크]  [' + ball + ' 볼]\n' +
-                    '\n 3 스트라이크가 아니라면 숫자를 다시 입력하세요. (컴퓨터 숫자는 고정) \n' +
+                    '\n [3 스트라이크]가 아니면 숫자 입력 창이 새로 뜹니다. (컴퓨터 숫자는 고정) \n' +
                     '\n [스트라이크] : 자릿수와 숫자 모두 맞춤' +
                     '\n [볼]: 숫자는 맞췄으나 자릿수를 틀림' +
                     '\n [3 스트라이크] : 게임 끝')
