@@ -10,33 +10,48 @@
 
 <body>
     <script>
-        function shuffle(arr) {
-            for (var i = arr.length; i; i -= 1) {
-                var j = Math.floor(Math.random() * i);
-                var x = arr[i - 1];
-                arr[i - 1] = arr[j];
-                arr[j] = x;
+        // function shuffle(arr) {
+        //     for ( i = arr.length; i; i -= 1) {
+        //         let j = Math.floor(Math.random() * i);
+        //         let x = arr[i - 1];
+        //         arr[i - 1] = arr[j];
+        //         arr[j] = x;
+        //     }
+        //     return arr;
+        // };
+
+        // 1. 컴퓨터 랜덤 수 생성
+        function randomNum(min, max) {
+            let arr = [];
+            while (arr.length != 3) {
+                let n = Math.floor(Math.random() * max) + min;
+                if (arr.includes(n)) {
+                    let n = Math.floor(Math.random() * max) + min;
+                } else {
+                    arr.push(n);
+                }
             }
             return arr;
-        };
+        }
 
+        // 2. 유저 수 입력 받기
         function input() {
-            var inputNum = Number(prompt(('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)'), '123'));
+            let inputNum = Number(prompt(('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)'), '123'));
             while ((isNaN(inputNum) || typeof inputNum !== 'number' || inputNum > 1000 || inputNum < 100 || (inputNum + '').indexOf('0') > -1)) {
                 alert('1~9까지의 서로 다른 숫자 세 개를 입력하세요. (예: 123)');
-                var inputNum = Number(prompt(('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)'), '123'));
+                let inputNum = Number(prompt(('1부터 9까지 서로 다른 수를 연달아 입력하세요. (예: 123)'), '123'));
             };
-            var str = inputNum.toString();
+            let str = inputNum.toString();
             // console.log(typeof str);
-            var userNum = str.split('').map(Number);
+            let userNum = str.split('').map(Number);
             // console.log('split은' + userNum);
             return userNum;
         }
 
-
+        // 3. 스트라이크 체크
         function strikeCheck(arr1, arr2) {
-            var strike = 0
-            for (var i = 0; i < 3; i++) {
+            let strike = 0
+            for (let i = 0; i < 3; i++) {
                 if (arr1[i] === arr2[i]) {
                     strike++;
                 }
@@ -46,10 +61,10 @@
         }
 
 
-
+        // 4. 볼 체크
         function ballCheck(arr1, arr2) {
-            var ball = 0
-            for (var i = 0; i < 3; i++) {
+            let ball = 0
+            for (let i = 0; i < 3; i++) {
                 if (arr1[i] != arr2[i] && arr1.includes(arr2[i])) {
                     ball++;
                 }
@@ -59,27 +74,27 @@
         }
 
 
+        // 5. 게임 진행
         function game() {
-            var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-            var arrShuffle = shuffle(arr);
-            var ref = [arrShuffle[0], arrShuffle[1], arrShuffle[2]];
+            let ref = randomNum(1, 9)
             console.log('컴퓨터 숫자는 ' + ref);
-            var count = 0;
+            let count = 0;
+            let strike = 0;
+            let ball = 0;
 
             while (strike != 3) {
                 count++;
-                var userNum = input();
-
-                var strike = strikeCheck(userNum, ref);
-                var ball = ballCheck(userNum, ref);
-
+                let userNum = input();
+                strike = strikeCheck(userNum, ref);
+                ball = ballCheck(userNum, ref);
                 console.log(count + '번째 도전 결과:  [' + strike + ' 스트라이크]  [' + ball + ' 볼]');
+
                 alert('입력한 수 = ' + userNum +
                     '\n' + count + '번째 도전 결과:  [' + strike + ' 스트라이크]  [' + ball + ' 볼]\n' +
+                    '\n 3 스트라이크가 아니라면 숫자를 다시 입력하세요. (컴퓨터 숫자는 고정) \n' +
                     '\n [스트라이크] : 자릿수와 숫자 모두 맞춤' +
                     '\n [볼]: 숫자는 맞췄으나 자릿수를 틀림' +
-                    '\n [3 스트라이크] : 게임 끝' +
-                    '\n 컴퓨터 숫자는 고정');
+                    '\n [3 스트라이크] : 게임 끝')
             }
             document.write('축하합니다! 컴퓨터 숫자는 ' + ref + '입니다.<br><br>' + count + '번째 도전에서 맞추셨습니다!');
         }
