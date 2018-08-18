@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>gugudanArray</title>
+</head>
+
+<body>
+    <script>
+        // let arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+        // arr[0][0] = gugudan(2);
+        // arr[0][1] = gugudan(3);
+        // arr[0][2] = gugudan(4);
+        // arr[1][0] = gugudan(5);
+        // arr[1][1] = gugudan(6);
+        // arr[1][2] = gugudan(7);
+        // arr[2][0] = gugudan(8);
+        // arr[2][1] = gugudan(9);
+
+        // function dan(n) {
+        //     let emptyArr = [];
+        //     for (let i = 0; i < 9; i++) {
+        //         emptyArr[i] = gugudan(n);
+        //     }
+        //     return emptyArr;
+        // }
+
+
+        function gugudan(n) {
+            for (let j = 1; j < 10; j++) {
+                document.write(n + 'X' + j + ' = ' + n * j + '&nbsp'+ '&nbsp');
+                document.write((n + 1) + 'X' + j + ' = ' + (n + 1) * j + '&nbsp'+ '&nbsp');
+                document.write((n + 2) + 'X' + j + ' = ' + (n + 2) * j + '<br>');
+            }
+            document.write('<p>');
+        }
+
+        gugudan(2);
+        gugudan(5);
+        gugudan(8);
+
+    </script>
+</body>
+
+</html>
