@@ -10,27 +10,46 @@
 
 <body>
     <div>
-        첫번째 수: <input type="text" id="val1"> <br>
-        두번째 수: <input type="text" id="val2"> <br>
+        첫번째 수:
+        <input type="text" id="val1">
+        <br> 연산자:
+        <input type="text" id="op">
+        <br>두번째 수:
+        <input type="text" id="val2">
+        <br> 
         <button onclick="calc()">실행</button>
     </div>
-    <div> <div id = "output"></div>
-    <script>
+    <div>
+        <div id="output"></div>
+        <script>
 
-        function calc() {
-            let a = Number(document.getElementById('val1').value);
-            let b = Number(document.getElementById('val2').value);
-           
-            let out = document.getElementById('output');
-            let str = "";
-            str += a + ' - ' + b + ' = ' + (a - b) + '<br>';
-            str += a + ' + ' + b + ' = ' + (a + b) + '<br>';
-            str += a + ' X ' + b + ' = ' + (a * b) + '<br>';
-            str += a + ' / ' + b + ' = ' + (a / b) + '<br>';
-        
-            out.innerHTML = str;
-        }
-    </script>
+            function calc() {
+                let a = Number(document.getElementById('val1').value);
+                let b = Number(document.getElementById('val2').value);
+                let c = document.getElementById('op').value;
+
+                let out = document.getElementById('output');
+                let str = "";
+                if (c === '+') {
+                    str += a + ' + ' + b + ' = ' + (a + b) + '<br>';
+                }
+                else if (c === '-') {
+                    str += a + ' - ' + b + ' = ' + (a - b) + '<br>';
+                }
+                else if (c === '*') {
+                    str += a + ' X ' + b + ' = ' + (a * b) + '<br>';
+                }
+                else if (c === '/') {
+                    str += a + ' / ' + b + ' = ' + (a / b) + '<br>';
+                }
+                else {
+                    str += '더하기는 +   빼기는 -   곱셈은 *    나누기는 /'
+                }
+
+
+                out.innerHTML = str;
+            }
+        </script>
 </body>
 
 </html>
