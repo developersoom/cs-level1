@@ -9,18 +9,27 @@
 </head>
 
 <body>
+    <div>
+        첫번째 수: <input type="text" id="val1"> <br>
+        두번째 수: <input type="text" id="val2"> <br>
+        <button onclick="calc()">실행</button>
+    </div>
+    <div> <div id = "output"></div>
     <script>
-        function main(a, b) {
-            document.write(a + ' + ' + b + ' = ' + (a + b) + '<br>');
-            document.write(a + ' - ' + b + ' = ' + (a - b) + '<br>');
-            document.write(a + ' X ' + b + ' = ' + (a * b) + '<br>');
-            document.write(a + ' / ' + b + ' = ' + (a / b) + '<br>');
+
+        function calc() {
+            let a = Number(document.getElementById('val1').value);
+            let b = Number(document.getElementById('val2').value);
+           
+            let out = document.getElementById('output');
+            let str = "";
+            str += a + ' - ' + b + ' = ' + (a - b) + '<br>';
+            str += a + ' + ' + b + ' = ' + (a + b) + '<br>';
+            str += a + ' X ' + b + ' = ' + (a * b) + '<br>';
+            str += a + ' / ' + b + ' = ' + (a / b) + '<br>';
+        
+            out.innerHTML = str;
         }
-
-        let val1 = Number(prompt('첫번째 숫자를 입력하세요'));
-        let val2 = Number(prompt('두번째 숫자를 입력하세요'));
-        main(val1, val2);
-
     </script>
 </body>
 
