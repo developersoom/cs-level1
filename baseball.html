@@ -6,10 +6,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Baseball game</title>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.js"></script> -->
+
 </head>
 
 <body>
-    <script>
+        <div>
+                <h1> 신나는 컴퓨터 야구게임! </h1>
+                <h2> 1부터 9까지 숫자를 겹치지 않게 입력하세요. </h2>
+                첫 번째 수:
+                <input type="text" id="inputNum1">
+                <br> 두 번째 수:
+                <input type="text" id="inputNum2">
+                <br> 세 번째 수:
+                <input type="text" id="inputNum3">
+                <br>
+                <button onclick="game()"> 답을 확인 </button>
+                <br>
+                <p id="result"> </p>
+            </div>
+        
+            <script>
+                // get random numbers 
+                function randomNum(min, max) {
+                    let arr = [];
+                    while (arr.length != 3) {
+                        let n = Math.floor(Math.random() * max) + min;
+                        if (arr.includes(n)) {
+                            let n = Math.floor(Math.random() * max) + min;
+                        } else {
+                            arr.push(n);
+                        }
+                    }
+                    return arr;
+                }
+        
+                // str -> num
+                function input() {
+                    let inputNum = [Number(inputNum1.value), Number(inputNum2.value), Number(inputNum3.value)];
+                    return inputNum;
+                }
+        
+                // check strikes
+                function strikeCheck(arr1, arr2) {
+                    let strike = 0
+                    for (let i = 0; i < 3; i++) {
+                        if (arr1[i] === arr2[i]) {
+                            strike++;
+                        }
+                    }
+                    return strike;
+                }
+        
+                // check balls
+                function ballCheck(arr1, arr2) {
+                    let ball = 0
+                    for (let i = 0; i < 3; i++) {
+                        if (arr1[i] != arr2[i] && arr1.includes(arr2[i])) {
+                            ball++;
+                        }
+                    }
+                    return ball;
+                }
+        
+                // game
+                let ref = randomNum(1, 9)
+                console.log('컴퓨터 숫자는 ' + ref);
+        
+                function game() {
+                    let strike = 0;
+                    let ball = 0;
+                    let userNum = input();
+                    
+                    strike = strikeCheck(userNum, ref);
+                    ball = ballCheck(userNum, ref);            
+                    console.log('스트라이크 ' + strike + '개' + '     볼 ' + ball + '개');
+        
+                    if (strike != 3) {
+                        document.getElementById('result').innerHTML = '스트라이크 ' + strike + '개' + '     볼 ' + ball + '개' + '<br>' + '숫자를 다시 입력하세요!';
+                    } else {
+                        document.getElementById('result').innerHTML = '게임 끝! YOU WIN!';
+                    }
+                }
+        
         // function shuffle(arr) {
         //     for ( i = arr.length; i; i -= 1) {
         //         let j = Math.floor(Math.random() * i);
@@ -21,18 +101,18 @@
         // };
 
         // 1. 컴퓨터 랜덤 수 생성
-        function randomNum(min, max) {
-            let arr = [];
-            while (arr.length != 3) {
-                let n = Math.floor(Math.random() * max) + min;
-                if (arr.includes(n)) {
-                    let n = Math.floor(Math.random() * max) + min;
-                } else {
-                    arr.push(n);
-                }
-            }
-            return arr;
-        }
+        // function randomNum(min, max) {
+        //     let arr = [];
+        //     while (arr.length != 3) {
+        //         let n = Math.floor(Math.random() * max) + min;
+        //         if (arr.includes(n)) {
+        //             let n = Math.floor(Math.random() * max) + min;
+        //         } else {
+        //             arr.push(n);
+        //         }
+        //     }
+        //     return arr;
+        // }
 
         // 2. 유저 수 입력 받기
 
@@ -49,79 +129,79 @@
         //     return userNum;
         // }
 
-        function input() {
-            let inputNum = [];
-            while (inputNum.length != 3) {
-                let userNum = Number(prompt(('1부터 9까지 숫자 하나를 입력하세요.')));
+        // function input() {
+        //     let inputNum = [];
+        //     while (inputNum.length != 3) {
+        //         let userNum = Number(prompt(('1부터 9까지 숫자 하나를 입력하세요.')));
 
-                if (inputNum.includes(userNum)) {
-                    userNum = Number(prompt(('*경고* 입력한 수와 겹치지 않는 수를 입력하세요.')));
-                } else if (isNaN(userNum)) {
-                    userNum = Number(prompt(('*경고* 0이 아닌 1부터 9까지 숫자 한 개만 입력하세요.')));
-                } else if (userNum > 9 || userNum < 0) {
-                    userNum = Number(prompt(('*경고* 1부터 9까지 한자리 숫자를 입력하세요.')));
-                } else if (userNum === 0) {
-                    return;
-                } else {
-                    inputNum.push(userNum);
-                    console.log('입력받은 수는 '+userNum);
-                }
-            }
-            return inputNum;
-        }
+        //         if (inputNum.includes(userNum)) {
+        //             userNum = Number(prompt(('*경고* 입력한 수와 겹치지 않는 수를 입력하세요.')));
+        //         } else if (isNaN(userNum)) {
+        //             userNum = Number(prompt(('*경고* 0이 아닌 1부터 9까지 숫자 한 개만 입력하세요.')));
+        //         } else if (userNum > 9 || userNum < 0) {
+        //             userNum = Number(prompt(('*경고* 1부터 9까지 한자리 숫자를 입력하세요.')));
+        //         } else if (userNum === 0) {
+        //             return;
+        //         } else {
+        //             inputNum.push(userNum);
+        //             console.log('입력받은 수는 ' + userNum);
+        //         }
+        //     }
+        //     return inputNum;
+        // }
 
         // 3. 스트라이크 체크
-        function strikeCheck(arr1, arr2) {
-            let strike = 0
-            for (let i = 0; i < 3; i++) {
-                if (arr1[i] === arr2[i]) {
-                    strike++;
-                }
-            }
-            // console.log('스트라이크' + strike + '회');
-            return strike;
-        }
+        // function strikeCheck(arr1, arr2) {
+        //     let strike = 0
+        //     for (let i = 0; i < 3; i++) {
+        //         if (arr1[i] === arr2[i]) {
+        //             strike++;
+        //         }
+        //     }
+        //     // console.log('스트라이크' + strike + '회');
+        //     return strike;
+        // }
 
 
         // 4. 볼 체크
-        function ballCheck(arr1, arr2) {
-            let ball = 0
-            for (let i = 0; i < 3; i++) {
-                if (arr1[i] != arr2[i] && arr1.includes(arr2[i])) {
-                    ball++;
-                }
-            }
-            // console.log('볼' + ball + '회');
-            return ball;
-        }
+        // function ballCheck(arr1, arr2) {
+        //     let ball = 0
+        //     for (let i = 0; i < 3; i++) {
+        //         if (arr1[i] != arr2[i] && arr1.includes(arr2[i])) {
+        //             ball++;
+        //         }
+        //     }
+        //     // console.log('볼' + ball + '회');
+        //     return ball;
+        // }
 
 
         // 5. 게임 진행
-        function game() {
-            let ref = randomNum(1, 9)
-            console.log('컴퓨터 숫자는 ' + ref);
-            let count = 0;
-            let strike = 0;
-            let ball = 0;
+        // function game() {
+        //     let ref = randomNum(1, 9)
+        //     console.log('컴퓨터 숫자는 ' + ref);
+        //     let count = 0;
+        //     let strike = 0;
+        //     let ball = 0;
 
-            while (strike != 3) {
-                count++;
-                let userNum = input();
-                strike = strikeCheck(userNum, ref);
-                ball = ballCheck(userNum, ref);
-                console.log(count + '번째 도전 결과:  [' + strike + ' 스트라이크]  [' + ball + ' 볼]');
+        //     while (strike != 3) {
+        //         count++;
+        //         let userNum = input();
+        //         strike = strikeCheck(userNum, ref);
+        //         ball = ballCheck(userNum, ref);
+        //         console.log(count + '번째 도전 결과:  [' + strike + ' 스트라이크]  [' + ball + ' 볼]');
 
-                alert('입력한 수 = ' + userNum +
-                    '\n' + count + '번째 도전 결과:  [' + strike + ' 스트라이크]  [' + ball + ' 볼]\n' +
-                    '\n [3 스트라이크]가 아니면 숫자 입력 창이 새로 뜹니다. (컴퓨터 숫자는 고정) \n' +
-                    '\n [스트라이크] : 자릿수와 숫자 모두 맞춤' +
-                    '\n [볼]: 숫자는 맞췄으나 자릿수를 틀림' +
-                    '\n [3 스트라이크] : 게임 끝')
-            }
-            document.write('축하합니다! 컴퓨터 숫자는 ' + ref + '입니다.<br><br>' + count + '번째 도전에서 맞추셨습니다!');
-        }
+        //         alert('입력한 수 = ' + userNum +
+        //             '\n' + count + '번째 도전 결과:  [' + strike + ' 스트라이크]  [' + ball + ' 볼]\n' +
+        //             '\n [3 스트라이크]가 아니면 숫자 입력 창이 새로 뜹니다. (컴퓨터 숫자는 고정) \n' +
+        //             '\n [스트라이크] : 자릿수와 숫자 모두 맞춤' +
+        //             '\n [볼]: 숫자는 맞췄으나 자릿수를 틀림' +
+        //             '\n [3 스트라이크] : 게임 끝')
+        //     }
+        //     document.write('축하합니다! 컴퓨터 숫자는 ' + ref + '입니다.<br><br>' + count + '번째 도전에서 맞추셨습니다!');
+        // }
 
-        game();
+        // game();
 
     </script>
 
