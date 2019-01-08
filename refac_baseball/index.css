@@ -1,0 +1,25 @@
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+.header{
+    height: 360px;
+    width: 480px;
+    background-image: url("https://media.giphy.com/media/3o6MbqNPaatT8nnEmk/giphy.gif");
+}
+
+body{
+    font-family: 'Hanna', serif;
+} 
+
+input{
+    display: inline;
+    padding: 5px; 
+    margin: 10px;
+}
+
+#btn{
+    margin: 10px;
+    width: 80px;
+    height: 20px;
+    margin-left: 300px;
+    border-radius: 4px;
+}
